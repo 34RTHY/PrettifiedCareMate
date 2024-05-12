@@ -334,8 +334,6 @@ Response in MarkDown Format:
 - **Answer** : Reason
 """
 
-
-                        
                 with st.spinner(text="In progress..."):
                     response = modified_query_engine.query(query_str)
                 full_response = response.response
@@ -437,8 +435,6 @@ To enhance diagnostic accuracy, we suggest conducting the following laboratory t
 
 -----RESPONSE FORMAT-----
 """
-
-                                
                     
                 with st.spinner(text="In progress..."):
                     response = modified_query_engine.query(query_str)
