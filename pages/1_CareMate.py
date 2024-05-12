@@ -5,7 +5,6 @@ import time
 import pymongo
 import os
 from llama_index.vector_stores.mongodb import MongoDBAtlasVectorSearch
-from llama_index.core import StorageContext
 from llama_index.core import VectorStoreIndex
 from llama_index.llms.openai import OpenAI
 from llama_index.core.node_parser import SentenceSplitter
@@ -40,7 +39,6 @@ class Chatapp:
             text += paragraph.text + "\n"
         return text
 
-    # Function to extract text from PDF file
     def extract_text_from_pdf(self,file_contents):
         pdf_reader = PyPDF2.PdfReader(io.BytesIO(file_contents))
         text = ""
