@@ -1,0 +1,186 @@
+body {
+    zoom: 130%;
+}
+
+header.st-emotion-cache-18ni7ap.ezrtsby2{
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0px;
+    text-align: center;
+    height: 0px;
+}
+
+header.st-emotion-cache-18ni7ap.ezrtsby2{
+    text-align: center;
+    height: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/*body*/
+div.appview-container.st-emotion-cache-1wrcr25.ea3mdgi9{
+    background-color: #fafaf4;
+    background-attachment: scroll;
+    background-image: linear-gradient(to bottom, #fafaf4, rgb(255, 255, 255));
+}
+
+
+div.st-emotion-cache-zt5igj.e1nzilvr4 {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    font-weight: 600; 
+    margin-top: 30px;
+}
+
+div.stButton > button:first-child {
+    background-color: #0f162a;
+    color:white;
+    font-size:20px;
+    height:3em;
+    width:8em;
+    border: 2px solid #101a2c;
+}
+
+div.st-emotion-cache-ocqkz7.e1f1d6gn5{
+    margin-top: 130px;
+}
+
+div.st-emotion-cache-10trblm.e1nzilvr1{
+    margin-top: 100px;
+}
+
+/*outlineboxslarge->large to small gap */
+/* div.st-emotion-cache-1fjr796.e1f1d6gn3{
+    background-color: #e8f2f9;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+div.st-emotion-cache-1fjr796.e1f1d6gn3:hover{
+    outline: 2px solid #0f162a;
+    animation: selectBoxAnimation 0.4s forwards;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+} */
+
+div.st-emotion-cache-tcjedx.e1f1d6gn3{
+    background-color: #e8f2f9;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+div.st-emotion-cache-tcjedx.e1f1d6gn3:hover{
+    outline: 2px solid #0f162a;
+    animation: selectBoxAnimation 0.4s forwards;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* div.st-emotion-cache-1r6slb0.e1f1d6gn3{
+    background-color: #e8f2f9;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+div.st-emotion-cache-1r6slb0.e1f1d6gn3:hover{
+    outline: 2px solid #0f162a;
+    animation: selectBoxAnimation 0.4s forwards;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+} */
+
+/*#ends*/
+div.st-emotion-cache-1fjr796.e1f1d6gn3:hover{
+    outline: 2px solid #0f162a;
+    animation: selectBoxAnimation 0.4s forwards;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+div.stButton > button:first-child {
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    background-color: #0f162a;
+    color: white;
+    font-size: 20px;
+    height: 3em;
+    width: 8em;
+    border: 2px solid #101a2c;
+    cursor: pointer;
+    transition: color 0.4s ease;
+}
+
+div.stButton > button:first-child::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to right, transparent, #0f162a);
+    transition: width 1s ease;
+    z-index: -1;
+}
+
+div.stButton > button:first-child:hover::before {
+    width: 100%;
+}
+
+div.stButton > button:first-child:hover {
+    color: #0f162a;
+    background-color: white;
+}
+
+@keyframes selectBoxAnimation {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+}
+
+div.row-widget.stSelectbox:hover {
+    animation: selectBoxAnimation 0.4s forwards;
+}
+
+div.st-emotion-cache-10trblm.e1nzilvr1{
+    text-align: center;
+}
+
+div.st-emotion-cache-1n76uvr.e1f1d6gn2{
+    animation: selectBoxAnimation 0.4s forwards;
+}
+
+/*changepage*/
+div.st-emotion-cache-j7qwjs.eczjsme7{
+    height: 0px;
+    padding: 0px;
+    display: none;
+}
+
+div.st-emotion-cache-1v0mbdj.e115fcil1{
+    margin-top: -25 px;
+    margin-right: 60;
+    max-width: 100%;
+}
+
+div.st-emotion-cache-18l0hbk.eczjsme6{
+    height: 0px;
+    padding: 0px;
+    display: none;
+    z-index: -1;
+}
+
+div.st-emotion-cache-2ysx9g.e1f1d6gn3{
+    /* width: 354px; */
+    font-size: 14px;
+}
+
+div.st-emotion-cache-keje6w.e1f1d6gn3{
+    text-align: center;
+}
+
+div.st-emotion-cache-obbtz.e1nzilvr5::marker{
+    /* width: 353px; */
+    font-size: 14px;
+}

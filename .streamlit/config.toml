@@ -1,0 +1,14 @@
+[theme]
+base="light"
+textColor="#37405c"
+primaryColor="#4287f5"
+
+[client]
+showErrorDetails = false
+
+[browser]
+showSidebarNavigation = false
+
+[server]
+runOnSave = true
+maxUploadSize = 15

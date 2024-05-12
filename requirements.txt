@@ -1,0 +1,13 @@
+streamlit
+streamlit_extras
+streamlit_navigation_bar
+streamlit_option_menu
+pymongo
+llama_index.vector_stores.mongodb
+llama_index
+llama_index.llms.openai
+llama_index.postprocessor.rankgpt_rerank
+llama_index.llms.together
+PyPDF2
+python-docx
+reportlab                                                      
