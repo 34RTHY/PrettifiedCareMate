@@ -12,10 +12,6 @@ from llama_index.llms.together import TogetherLLM
 from llama_index.core import Document
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import os
 from datetime import datetime
 import streamlit as st
