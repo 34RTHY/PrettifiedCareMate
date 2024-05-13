@@ -12,7 +12,10 @@ from llama_index.llms.together import TogetherLLM
 from llama_index.core import Document
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import os
 from datetime import datetime
 import streamlit as st
@@ -218,14 +221,11 @@ class Chatapp:
 
                 timestamp = ''.join(c if c not in invalid_chars else '_' for c in generated_time)
                 File_stamp = f"{timestamp}"
+                ###Create pdf
                 caremate.writer.generate_patient_mode_report(Possible_diseases, Treatments_for_each_disease,doctor_or_pharmacy,Next_steps_for_the_patient,f'./pdfout/{File_stamp}.pdf')
-                with open(f"./pdfout/{File_stamp}.pdf", "rb") as pdf_file:
-                    PDFbyte = pdf_file.read()
-
-                os.remove(f"./pdfout/{File_stamp}.pdf")
-
-                self.show_download_button("Download Report",PDFbyte,"Patient Mode Report.pdf")
-                        
+                ###Download report
+                self.download_file(File_stamp)
+                ###output  
                 with st.container(border = True):
                     st.markdown(full_response)
 
