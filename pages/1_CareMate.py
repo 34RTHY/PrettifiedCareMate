@@ -13,12 +13,8 @@ from llama_index.core import Document
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
 
-
 import os
 from datetime import datetime
-import PyPDF2
-import docx
-import io
 import streamlit as st
 import src.CareMate as caremate
 
@@ -29,39 +25,20 @@ class Chatapp:
         st.set_page_config(initial_sidebar_state="auto")
         caremate.initialize.css_loader(path_to_css)
 
-    def extract_text_from_txt(self,file_contents):
-        return file_contents.decode("utf-8")
-
-    def extract_text_from_docx(self,file_contents):
-        doc = docx.Document(io.BytesIO(file_contents))
-        text = ""
-        for paragraph in doc.paragraphs:
-            text += paragraph.text + "\n"
-        return text
-
-    def extract_text_from_pdf(self,file_contents):
-        pdf_reader = PyPDF2.PdfReader(io.BytesIO(file_contents))
-        text = ""
-        for page_number in range(len(pdf_reader.pages)):
-            text += pdf_reader.pages[page_number].extract_text()
-        return text
-    
-    def cached_extract_text(self,file_contents, file_type):
-        if file_type == "text/plain":
-            return self.extract_text_from_txt(file_contents)
-        elif file_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-            return self.extract_text_from_docx(file_contents)
-        elif file_type == "application/pdf":
-            return self.extract_text_from_pdf(file_contents)
-        else:
-            st.error("Unsupported file format.")
-
     @st.experimental_fragment
     def show_download_button(self,Label,data,file_name):
         st.download_button(label=Label,
                             data=data,
                             file_name=file_name,
                             )
+    
+    def download_file(self,File_stamp):
+        with open(f"./pdfout/{File_stamp}.pdf", "rb") as pdf_file:
+            PDFbyte = pdf_file.read()
+
+        os.remove(f"./pdfout/{File_stamp}.pdf")
+
+        self.show_download_button("Download Report",PDFbyte,"Medical Code Report.pdf")
 
     def maketopatient(self,text):
         parts = text.split('\n\n')
@@ -77,27 +54,6 @@ class Chatapp:
         str2 = parts[1].replace('## Suggested Actions to Assist the Doctor:','')
         str3 = parts[2].replace('## Suggested Laboratory Tests for Precise Diagnosis:','')
         return str1.replace('*','').strip(), str2.replace('*','').strip(), str3.replace('*','').strip()
-
-    def create_query_str(self,text) -> str:
-        query_str = f"""
-As a medical coding and billing tool,
-you'll analyze clinical reports to suggest ICD, CPT, and HCPCS codes
-for various medical terms, symptoms, diagnoses, treatments, and procedures.
-Provide multiple relevant codes when necessary.
-
-Here is the task: {text}
-
------------Response Format-----------
-
-\t- ICD 11 code: original text | code (code name) *Add more codes if relevant
-\t- CPT code: original text | code (code name) *Add more codes if relevant
-\t- HCPCS code: original text | code (code name) *Add more codes if relevant
-*Add more Medical Terminology if relevent
-
------------Response Format-----------
-
-"""
-        return query_str
     
     def app(self):
         invalid_chars = ''' :/'*\\?"<>|'''
@@ -176,7 +132,7 @@ Here is the task: {text}
                 file_contents = uploaded_file.getvalue()
                 file_type = uploaded_file.type
 
-                text = self.cached_extract_text(file_contents, file_type)
+                text = caremate.writer.Gettextfromfile(file_contents, file_type)
                 doc = [Document(text=text)]
                 splitter = SentenceSplitter(
                     chunk_size=128,
@@ -193,32 +149,14 @@ Here is the task: {text}
                 ###Querry
                 suggested_medical_codes = []
                 for node in nodes:
-                    suggested_medical_codes.append(base_query_engine_cb.query(self.create_query_str(str(node.text))))
+                    suggested_medical_codes.append(base_query_engine_cb.query(caremate.getquerystr.medical_coding_query(str(node.text))))
                     progression += 100//len(nodes)
                     my_bar.progress(progression, text=progress_text)
 
                 suggested_medical_codes = [i.response for i in suggested_medical_codes]
                 unsorted_suggested_medical_codes = '\n'.join(suggested_medical_codes)
 
-                ICD_code_list = []
-                CPT_code_list = []
-                HCPCS_code_list = []
-                for i in unsorted_suggested_medical_codes.split('\n'):
-                    tmp_string = i.replace('*Add more codes if relevant', '')
-                    try:
-                        if tmp_string[0] == '-' and 'No specific' not in tmp_string and 'Not specified' not in tmp_string:
-                            if tmp_string[2] == 'I':
-                                ICD_code_list.append(tmp_string)
-                            elif tmp_string[2] == 'C':
-                                CPT_code_list.append(tmp_string)
-                            elif tmp_string[2] == 'H':
-                                HCPCS_code_list.append(tmp_string)
-                    except:
-                        continue
-
-                Suggested_ICD_11_Codes_Text = "\n".join([ '\t' + "".join(i.split(': ')[1:]) for i in ICD_code_list])
-                Suggested_CPT_Codes_Text = "\n".join([ '\t' + "".join(i.split(': ')[1:]) for i in CPT_code_list])
-                Suggested_HCPCS_Codes_Text = "\n".join([ '\t' + "".join(i.split(': ')[1:]) for i in HCPCS_code_list])
+                Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text = caremate.medicalcoding.splitcodes(unsorted_suggested_medical_codes)
 
                 my_bar.progress(100, text='Completed')
                 time.sleep(1)
@@ -227,52 +165,11 @@ Here is the task: {text}
                 timestamp = ''.join(c if c not in invalid_chars else '_' for c in generated_time)
                 File_stamp = f"{filename}_{timestamp}"
                 caremate.writer.generate_medical_code_report(Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text,f'./pdfout/{File_stamp}.pdf')
-
-                with open(f"./pdfout/{File_stamp}.pdf", "rb") as pdf_file:
-                    PDFbyte = pdf_file.read()
-
-                os.remove(f"./pdfout/{File_stamp}.pdf")
-
-                self.show_download_button("Download Report",PDFbyte,"Medical Code Report.pdf")
-
-
+                
+                #download file:
+                self.download_file(File_stamp)
                 ###OUTPUT
-                with st.container(border = True):
-                    st.markdown('## Suggested ICD 11 Codes')
-                    for Each_code in Suggested_ICD_11_Codes_Text.split('\t'):
-                        if Each_code.strip() == '' or Each_code == None or None:
-                            continue
-                        str_list = Each_code.split('|')
-                        Symptom_name = str_list[0].strip()
-                        try:
-                            Code_name = str_list[1].strip()
-                        except:
-                            Code_name = str_list[0].strip()
-                        st.markdown(f'- **{Symptom_name}** : {Code_name}')
-                with st.container(border = True):
-                    st.markdown('## Suggested CPT Codes')
-                    for Each_code in Suggested_CPT_Codes_Text.split('\t'):
-                        if Each_code.strip() == '' or Each_code == None or None:
-                            continue
-                        str_list = Each_code.split('|')
-                        Symptom_name = str_list[0].strip()
-                        try:
-                            Code_name = str_list[1].strip()
-                        except:
-                            Code_name = str_list[0].strip()
-                        st.markdown(f'- **{Symptom_name}** : {Code_name}')
-                with st.container(border = True):
-                    st.markdown('## Suggested HCPCS Codes')
-                    for Each_code in Suggested_HCPCS_Codes_Text.split('\t'):
-                        if Each_code.strip() == '' or Each_code == None or None:
-                            continue
-                        str_list = Each_code.split('|')
-                        Symptom_name = str_list[0].strip()
-                        try:
-                            Code_name = str_list[1].strip()
-                        except:
-                            Code_name = str_list[0].strip()
-                        st.markdown(f'- **{Symptom_name}** : {Code_name}')
+                caremate.medicalcoding.outputmedcode(Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text)
 
         if selected=='Patient Mode':
             Askpatient = False
@@ -311,28 +208,7 @@ Here is the task: {text}
             if Askpatient:
                 generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 Patient_input = f'My age:{AgeNumber}, My medical history:{Medical_History}, My symptoms:{Symptoms_injuries}, The timeline of this symptoms:{timeline} and Additional Context and Family History:{Additional_Context_and_Family_History}'
-                query_str = f"""As a professional medical service, diagnose three possible diseases based on the provided data:{Patient_input}. Use bullet points to list diseases from most likely to least likely. Include reasons for each diagnosis.
-
-If unsure, avoid sharing false information. Outline treatment options for each identified disease and specify whether the patient should seek professional medical attention or opt for self-care at a pharmacy.
-
-Response in MarkDown Format:
-## Possible diseases based on the symptoms described:
-- **Name Of Disease 1** : Reason
-- **Name Of Disease 2** : Reason
-- **Name Of Disease 3** : Reason
-
-## Treatments for each disease:
-- **Name Of Disease 1** : Treatment 1
-- **Name Of Disease 2** : Treatment 2
-- **Name Of Disease 3** : Treatment 3
-
-
-## Specify whether the patient should go to a doctor or pharmacy:
-- **Answer**: Reason
-
-## Next steps for the patient:
-- **Answer** : Reason
-"""
+                query_str = caremate.getquerystr.patient_mode_query(Patient_input)
 
                 with st.spinner(text="In progress..."):
                     response = modified_query_engine.query(query_str)
@@ -403,38 +279,8 @@ CD4/CD8 RATIO, RESULT:0.44 L, UNITS:Ratio, REFERENCE RANGE:0.90-6.00'''
             
             if Askdoctor:
                 generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                query_str = f"""As a professional medical health service provider, our task is to accurately assess possible diseases based on the given clinical laboratory test data and patient description, while ensuring the response remains faithful to the provided context. If the patient is healthy and unaffected, we will indicate that the patient's health is normal. We prioritize providing accurate information and refrain from sharing false information.
-
-Patient Presentation:
-The patient presents with the following clinical laboratory test data:
-- Patient Description: {patient_description}
-- Laboratory Test Result: {Lab_result}
-- Question: {task_input}
-
-Your task:
-Please find below the possible diseases and reasons for their consideration, listed from most likely to least likely:
-To assist the doctor in accurately diagnosing the symptoms, we recommend the following actions in priority order:
-To enhance diagnostic accuracy, we suggest conducting the following laboratory tests in priority order:
-
------RESPONSE in Markdown FORMAT-----
-
-## Suggested Diagnosis:
-- **Disease** : Reason
-- **Disease** : Reason (if suspected)
-- **Disease** : Reason (if suspected)
-
-## Suggested Actions to Assist the Doctor:
-- **Recommendation** : Reason
-- **Recommendation** : Reason (if relevant)
-- **Recommendation** : Reason (if relevant)
-
-## Suggested Laboratory Tests for Precise Diagnosis:
-- **Test** : Reason
-- **Test** : Reason (if relevant)
-- **Test** : Reason (if relevant)
-
------RESPONSE FORMAT-----
-"""
+                patientdata = '''- Patient Description: {patient_description} - Laboratory Test Result: {Lab_result} - Question: {task_input}'''
+                query_str = caremate.getquerystr.doctor_mode_query(patientdata)
                     
                 with st.spinner(text="In progress..."):
                     response = modified_query_engine.query(query_str)
