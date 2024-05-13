@@ -13,12 +13,8 @@ from llama_index.core import Document
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
 
-
 import os
 from datetime import datetime
-import PyPDF2
-import docx
-import io
 import streamlit as st
 import src.CareMate as caremate
 
@@ -35,6 +31,14 @@ class Chatapp:
                             data=data,
                             file_name=file_name,
                             )
+    
+    def download_file(self,File_stamp):
+        with open(f"./pdfout/{File_stamp}.pdf", "rb") as pdf_file:
+            PDFbyte = pdf_file.read()
+
+        os.remove(f"./pdfout/{File_stamp}.pdf")
+
+        self.show_download_button("Download Report",PDFbyte,"Medical Code Report.pdf")
 
     def maketopatient(self,text):
         parts = text.split('\n\n')
@@ -161,15 +165,9 @@ class Chatapp:
                 timestamp = ''.join(c if c not in invalid_chars else '_' for c in generated_time)
                 File_stamp = f"{filename}_{timestamp}"
                 caremate.writer.generate_medical_code_report(Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text,f'./pdfout/{File_stamp}.pdf')
-
-                with open(f"./pdfout/{File_stamp}.pdf", "rb") as pdf_file:
-                    PDFbyte = pdf_file.read()
-
-                os.remove(f"./pdfout/{File_stamp}.pdf")
-
-                self.show_download_button("Download Report",PDFbyte,"Medical Code Report.pdf")
-
-
+                
+                #download file:
+                self.download_file(File_stamp)
                 ###OUTPUT
                 caremate.medicalcoding.outputmedcode(Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text)
 
