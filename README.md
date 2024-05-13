@@ -1,2 +1,1 @@
-# CareTaker
- GeminiLLMRag
+# CareMate

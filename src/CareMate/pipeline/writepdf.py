@@ -1,7 +1,37 @@
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.pdfgen import canvas
 from datetime import datetime
+import PyPDF2
+import docx
+import io
+import streamlit as st
 class writer:
+    def extract_text_from_txt(file_contents):
+        return file_contents.decode("utf-8")
+
+    def extract_text_from_docx(file_contents):
+        doc = docx.Document(io.BytesIO(file_contents))
+        text = ""
+        for paragraph in doc.paragraphs:
+            text += paragraph.text + "\n"
+        return text
+
+    def extract_text_from_pdf(file_contents):
+        pdf_reader = PyPDF2.PdfReader(io.BytesIO(file_contents))
+        text = ""
+        for page_number in range(len(pdf_reader.pages)):
+            text += pdf_reader.pages[page_number].extract_text()
+        return text
+    
+    def Gettextfromfile(file_contents, file_type):
+        if file_type == "text/plain":
+            return writer.extract_text_from_txt(file_contents)
+        elif file_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            return writer.extract_text_from_docx(file_contents)
+        elif file_type == "application/pdf":
+            return writer.extract_text_from_pdf(file_contents)
+        else:
+            st.error("Unsupported file format.")
     def calculate_height(str_list):
             page_height = 0
             max_width = 512  # Maximum width
