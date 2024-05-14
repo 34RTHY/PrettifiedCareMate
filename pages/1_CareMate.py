@@ -286,14 +286,11 @@ CD4/CD8 RATIO, RESULT:0.44 L, UNITS:Ratio, REFERENCE RANGE:0.90-6.00'''
 
                 timestamp = ''.join(c if c not in invalid_chars else '_' for c in generated_time)
                 File_stamp = f"{timestamp}"
+                ###Create pdf
                 caremate.writer.generate_doctor_mode_report(Suggested_Diagnosis, Suggested_Actions,Suggested_Laboratory_Tests,f'./pdfout/{File_stamp}.pdf')
-                with open(f"./pdfout/{File_stamp}.pdf", "rb") as pdf_file:
-                    PDFbyte = pdf_file.read()
-
-                os.remove(f"./pdfout/{File_stamp}.pdf")
-
-                self.show_download_button("Download Report",PDFbyte,"Doctor Mode Report.pdf")
-
+                ###Download file
+                self.download_file(File_stamp)
+                ###output
                 with st.container(border = True):
                     st.markdown(full_response)
 
