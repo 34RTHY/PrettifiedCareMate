@@ -177,13 +177,6 @@ class Chatapp:
             Askpatient = False
             st.title('Ask :blue[CareMate] to analyze your symptoms or injuries')
             with st.container(border = True):
-                st.title("Progress Bar with st.markdown")
-
-                progress = st.slider("Select Progress", 0, 10, 0)
-        
-                progress_bar_str = progress_bar(progress)
-                st.markdown(f"Progress: {progress}/{10}")
-                st.markdown(progress_bar_str)
                 AgeNumber = st.number_input('Insert your Age',min_value=0)
 
                 Medical_History = st.text_area(
