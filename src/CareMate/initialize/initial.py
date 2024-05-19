@@ -29,11 +29,11 @@ class initialize:
                 "border-radius": "30px",
             },
             "active": {
-                "color": "var(--text-color)",
+                "color": "royalblue",
                 "background-color": "white",
-                "font-weight": "normal",
+                "font-weight": "bold",
                 "padding": "14px",
-                "border": "1px solid #101a2c",
+                "border": "0px solid #101a2c",
             }
         }
         options = {

@@ -14,7 +14,6 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
 import os
 from datetime import datetime
-import streamlit as st
 import src.CareMate as caremate
 
 path_to_css = './style/Appstyle.css'
@@ -116,7 +115,7 @@ class Chatapp:
 
 
         ###App
-
+#MED CODING
         if selected=='Medical Coding':
             st.title('Medical Coding Using :blue[CareMate]')
             write_result = False
@@ -169,7 +168,7 @@ class Chatapp:
                 self.download_file(File_stamp)
                 ###OUTPUT
                 caremate.medicalcoding.outputmedcode(Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text)
-
+#PATIENT MODE
         if selected=='Patient Mode':
             Askpatient = False
             st.title('Ask :blue[CareMate] to analyze your symptoms or injuries')
@@ -203,7 +202,7 @@ class Chatapp:
                 if st.button('Ask CareMate',type = 'primary'):
                     Askpatient = True
             
-
+#ASK PATIENT
             if Askpatient:
                 generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 Patient_input = f'My age:{AgeNumber}, My medical history:{Medical_History}, My symptoms:{Symptoms_injuries}, The timeline of this symptoms:{timeline} and Additional Context and Family History:{Additional_Context_and_Family_History}'
@@ -242,33 +241,33 @@ class Chatapp:
                     "Patient Description",
                     help = '''Patient description used for diagnosing the symptoms.''',
                     placeholder = '''Gender: Male
-Age: 35
-Occupation: Office administrator
-Presenting Symptoms:
-Persistent fever for the past two weeks
-Generalized weakness and fatigue
-Night sweats
-Unintentional weight loss of 4 kg over the last month
-Oral thrush
-Chronic diarrhea for the past two weeks
-History of recurrent herpes zoster infections
-Social History:
-Single, lives alone
-Non-smoker, occasional alcohol consumption
-Limited social support network
-Compliance with ART regimen has been inconsistent due to work-related stress'''
+                    Age: 35
+                    Occupation: Office administrator
+                    Presenting Symptoms:
+                    Persistent fever for the past two weeks
+                    Generalized weakness and fatigue
+                    Night sweats
+                    Unintentional weight loss of 4 kg over the last month
+                    Oral thrush
+                    Chronic diarrhea for the past two weeks
+                    History of recurrent herpes zoster infections
+                    Social History:
+                    Single, lives alone
+                    Non-smoker, occasional alcohol consumption
+                    Limited social support network
+                    Compliance with ART regimen has been inconsistent due to work-related stress'''
                 )
                 Lab_result = st.text_area(
                     "Lab results",
                     help = '''Your Laboratory result''',
                     placeholder='''LYMPH SUBSET
-CD3 ABS, RESULT:1920, UNITS:cu.mm, REFERENCE RANGE:625-2460
-CD3 %, RESULT:82.0, UNITS:Percent, REFERENCE RANGE:60-90
-CD3+/CD4+ (HELPER) ABS, RESULT:570, UNITS:cu.mm, REFERENCE RANGE:423-1724
-CD3+/CD4+ (HELPER) %, RESULT: 23.8 L, UNITS:Percent, REFERENCE RANGE:32-68
-CD3+/CD8+ (SUPPRES) ABS, RESULT:1290 H, UNITS:cu.mm, REFERENCE RANGE:140-958
-CD3+/CD8+ (SUPPRES) %, RESULT:53.9 H UNITS:Percent, REFERENCE RANGE:10-36
-CD4/CD8 RATIO, RESULT:0.44 L, UNITS:Ratio, REFERENCE RANGE:0.90-6.00'''
+                    CD3 ABS, RESULT:1920, UNITS:cu.mm, REFERENCE RANGE:625-2460
+                    CD3 %, RESULT:82.0, UNITS:Percent, REFERENCE RANGE:60-90
+                    CD3+/CD4+ (HELPER) ABS, RESULT:570, UNITS:cu.mm, REFERENCE RANGE:423-1724
+                    CD3+/CD4+ (HELPER) %, RESULT: 23.8 L, UNITS:Percent, REFERENCE RANGE:32-68
+                    CD3+/CD8+ (SUPPRES) ABS, RESULT:1290 H, UNITS:cu.mm, REFERENCE RANGE:140-958
+                    CD3+/CD8+ (SUPPRES) %, RESULT:53.9 H UNITS:Percent, REFERENCE RANGE:10-36
+                    CD4/CD8 RATIO, RESULT:0.44 L, UNITS:Ratio, REFERENCE RANGE:0.90-6.00'''
                 )
                 if st.button('Ask CareMate',type = 'primary',key = 'Doctor'):
                     Askdoctor = True

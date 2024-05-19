@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
     zoom: 130%;
 }
@@ -232,7 +236,7 @@ background-repeat: no-repeat;
 background-attachment: fixed;
 }
 
-@keyframes animateHeader {
+/* @keyframes animateHeader {
     from {
         transform: translateX(-50px);
         opacity: 0;
@@ -256,19 +260,9 @@ background-attachment: fixed;
 
 @keyframes animateImage {
     from {
-        /* transform: translateX(10px); */
         opacity: 0;
     }
     to {
-        /* transform: translate(0); */
         opacity: 1;
     }
-}
-
-.paragraph {
-    color: #37405C;
-  }
-  
-  .paragraph blue {
-    color: #0068C9;
-  }
+} */
