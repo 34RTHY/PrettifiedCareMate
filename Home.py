@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page 
 import streamlit.components.v1 as components
 import src.CareMate as caremate
-path_to_css = './style/Homestyle.css'
+path_to_css = './style/Landingpage.css'
 
 class Home:
     def set_bg_hack(self, main_bg):

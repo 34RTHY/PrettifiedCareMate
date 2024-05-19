@@ -23,6 +23,10 @@ class Chatapp:
         st.set_page_config(initial_sidebar_state="auto")
         caremate.initialize.css_loader(path_to_css)
 
+    def progress_bar(progress):
+        bar = "[" + "=" * progress + " " * (10 - progress) + "]"
+        return bar
+
     @st.experimental_fragment
     def show_download_button(self,Label,data,file_name):
         st.download_button(label=Label,
@@ -173,6 +177,13 @@ class Chatapp:
             Askpatient = False
             st.title('Ask :blue[CareMate] to analyze your symptoms or injuries')
             with st.container(border = True):
+                st.title("Progress Bar with st.markdown")
+
+                progress = st.slider("Select Progress", 0, 10, 0)
+        
+                progress_bar_str = progress_bar(progress)
+                st.markdown(f"Progress: {progress}/{10}")
+                st.markdown(progress_bar_str)
                 AgeNumber = st.number_input('Insert your Age',min_value=0)
 
                 Medical_History = st.text_area(
