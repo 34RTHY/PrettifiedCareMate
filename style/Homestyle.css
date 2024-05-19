@@ -184,3 +184,91 @@ div.st-emotion-cache-obbtz.e1nzilvr5::marker{
     /* width: 353px; */
     font-size: 14px;
 }
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20vh);
+    visibility: hidden;
+    transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+    will-change: opacity, visibility;
+  }
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
+
+.main h2 {
+    opacity: 0;
+}
+
+/* .main h1:target {
+    opacity: 0;
+} */
+
+[data-testid="stSidebar"] > div:first-child {
+background-image: url("data:image/png;base64,{img}");
+background-position: center; 
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+
+@keyframes animateHeader {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes animateMarkdown {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes animateImage {
+    from {
+        /* transform: translateX(10px); */
+        opacity: 0;
+    }
+    to {
+        /* transform: translate(0); */
+        opacity: 1;
+    }
+}
+
+.paragraph {
+    color: #37405C;
+  }
+  
+  .paragraph blue {
+    color: #0068C9;
+  }
