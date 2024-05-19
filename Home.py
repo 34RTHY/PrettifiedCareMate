@@ -1,16 +1,8 @@
 import streamlit as st
 from streamlit_extras.switch_page_button import switch_page 
 import streamlit.components.v1 as components
-import os
 import src.CareMate as caremate
 path_to_css = './style/Homestyle.css'
-
-@st.cache_data
-def get_img_as_base64(file):
-    with open(file, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
 
 class Home:
     def __init__(self):
