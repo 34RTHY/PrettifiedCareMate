@@ -206,7 +206,6 @@ class Chatapp:
                 if st.button('Ask CareMate',type = 'primary'):
                     Askpatient = True
             
-#ASK PATIENT
             if Askpatient:
                 generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 Patient_input = f'My age:{AgeNumber}, My medical history:{Medical_History}, My symptoms:{Symptoms_injuries}, The timeline of this symptoms:{timeline} and Additional Context and Family History:{Additional_Context_and_Family_History}'
@@ -215,7 +214,9 @@ class Chatapp:
                 with st.spinner(text="In progress..."):
                     response = modified_query_engine.query(query_str)
                 full_response = response.response
-
+                # st.markdown('DEBUG##################################################################')
+                # st.markdown(full_response)
+                # st.markdown('DEBUG##################################################################')
                 Possible_diseases, Treatments_for_each_disease,doctor_or_pharmacy,Next_steps_for_the_patient = self.maketopatient(full_response)
 
                 timestamp = ''.join(c if c not in invalid_chars else '_' for c in generated_time)
@@ -230,7 +231,7 @@ class Chatapp:
 
                     
 
-
+#DOCTOR MODE
         if selected=='Doctor Mode':
             Askdoctor = False
             st.title('Ask :blue[CareMate] to analyze your symptoms or injuries')
