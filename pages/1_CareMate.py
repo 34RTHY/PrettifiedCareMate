@@ -124,7 +124,7 @@ class Chatapp:
             st.title('Medical Coding Using :blue[CareMate]')
             write_result = False
             with st.container(border = True):
-                uploaded_file = st.file_uploader("Choose a file",type = ['docx','pdf','txt'])
+                uploaded_file = st.file_uploader("Choose a Medical report file",type = ['docx','pdf','txt'])
                 if uploaded_file is not None:
                     if st.button('Medical Coding',type='primary'):
                         generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
