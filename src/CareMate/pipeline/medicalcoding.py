@@ -4,15 +4,16 @@ class medicalcoding:
         ICD_code_list = []
         CPT_code_list = []
         HCPCS_code_list = []
+
         for i in unsorted_suggested_medical_codes.split('\n'):
             tmp_string = i.replace('*Add more codes if relevant', '')
             try:
-                if tmp_string[0] == '-' and 'No specific' not in tmp_string and 'Not specified' not in tmp_string:
-                    if tmp_string[2] == 'I':
+                if tmp_string[0] == '-' and 'Not' not in tmp_string and 'not' not in tmp_string:
+                    if 'ICD' in tmp_string:
                         ICD_code_list.append(tmp_string)
-                    elif tmp_string[2] == 'C':
+                    elif 'CPT' in tmp_string:
                         CPT_code_list.append(tmp_string)
-                    elif tmp_string[2] == 'H':
+                    elif 'HCPCS' in tmp_string:
                         HCPCS_code_list.append(tmp_string)
             except:
                 continue

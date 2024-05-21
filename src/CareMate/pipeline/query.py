@@ -77,3 +77,14 @@ To enhance diagnostic accuracy, we suggest conducting the following laboratory t
 -----RESPONSE FORMAT-----
 """
         return query_str
+    
+    def cleancode(unsorted_suggested_medical_codes) -> str:
+        prompt = """Clean this text and output Medical code like ICD 11, HCPSCS, CPT codes in a bullets points example and dont print any other thing that is irrelevant :
+-----RESPONSE in this FORMAT-----
+- ICD 11 code: original text | code (code name) *Add more codes if relevant
+- CPT code: original text | code (code name) *Add more codes if relevant
+- HCPCS code: original text | code (code name) *Add more codes if relevant
+
+Here is the unsorted medical codes: {unsorted_suggested_medical_codes}
+"""
+        return prompt

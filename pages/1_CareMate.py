@@ -78,6 +78,7 @@ class Chatapp:
         Settings.embed_model = OpenAIEmbedding(model_name='text-embedding-3-small')
         os.environ["REPLICATE_API_TOKEN"] = st.secrets['REPLICATE_API_TOKEN']
         snowflake = Replicate(model="snowflake/snowflake-arctic-instruct",temperature = 0,)
+        gpt35 = OpenAI(model="gpt-4-turbo", temperature=0, api_key = st.secrets['OPENAI_API_KEY'])
 
         client = pymongo.MongoClient(st.secrets["MongoUri"])
         clinet_cb = pymongo.MongoClient(st.secrets["client_cb"])
@@ -157,9 +158,9 @@ class Chatapp:
 
                 suggested_medical_codes = [i.response for i in suggested_medical_codes]
                 unsorted_suggested_medical_codes = '\n'.join(suggested_medical_codes)
+                unsorted_suggested_medical_codes_response = gpt35.complete(caremate.getquerystr.cleancode(unsorted_suggested_medical_codes).format(unsorted_suggested_medical_codes = unsorted_suggested_medical_codes)).text
 
-                Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text = caremate.medicalcoding.splitcodes(unsorted_suggested_medical_codes)
-
+                Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text = caremate.medicalcoding.splitcodes(unsorted_suggested_medical_codes_response)
                 my_bar.progress(100, text='Completed')
                 time.sleep(1)
                 ###TOPDF
