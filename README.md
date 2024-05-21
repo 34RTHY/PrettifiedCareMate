@@ -35,7 +35,7 @@ Taking symptom analysis to new heights, CareMate's Differential Diagnosis featur
 ### **1**.First of all :
 * You can proceed to the next page by clicking on either <strong>"Start Analyzing"</strong> or <strong>"Try CareMate"</strong>.
 
-![Screenshot 2024-05-07 184735](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/bc2cc925-f068-47a0-bad2-9967fc40aec5)
+![328510123-bc2cc925-f068-47a0-bad2-9967fc40aec5](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/022183a3-dfea-4cdc-9b06-94c509d8e4bb)
 
 ### **2**.Select the mode you wish to use :
 * You can choose from three modes :
@@ -45,45 +45,44 @@ Taking symptom analysis to new heights, CareMate's Differential Diagnosis featur
 
     * 3.<strong>Doctor Mode</strong>, designed for doctors to diagnose patients by providing patient information, symptoms, and clinical laboratory test data. We will then return suggested diseases, recommendations to assist the doctor, and additional laboratory tests to enhance diagnosis accuracy.
 
-![Screenshot 2024-05-07 175659](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/3d97a99d-8948-49bb-b1f3-3ed067476b9a)
-
+![328496106-3d97a99d-8948-49bb-b1f3-3ed067476b9a](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/9f946715-4c29-4638-a23d-41dbaf79dc05)
 
 # How to use each mode
 ### 1.Medical Coding
 * 1.1 First, you have to upload your medical report file. It can be in <strong>PDF</strong>, <strong>TXT</strong>, or <strong>DOCX</strong> format. After that, the <strong>"Medical Coding"</strong> button will appear.
-    * ![Screenshot 2024-05-07 182733](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/27adead7-7332-426e-a79b-8c1e7ba36d34)
+    * ![328504492-27adead7-7332-426e-a79b-8c1e7ba36d34](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/4cdce750-4b08-4662-a395-5d5c75472bd2)
 
 * 1.2 Click the <strong>"Medical Coding"</strong> button, and CareMate will take some time to generate the medical coding for you.
 
 
 * 1.3 After <strong>CareMate</strong> finishes generating the result, it will display the result, and there will also be an option for you to download the medical coding report in <strong>PDF</strong> format.
-    * ![Screenshot 2024-05-07 183140](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/d5de61f7-7a75-4c6f-a15b-53a749ebf3c8)
+    * ![328506247-d5de61f7-7a75-4c6f-a15b-53a749ebf3c8](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/91ee6394-0568-4784-a259-1f6bd7a1ad92)
 
 * Medical code report output example
-    *![Screenshot 2024-05-07 183455](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/924f840b-e9be-4c38-a7c8-37e8d8e0db11)
+    * ![328506257-924f840b-e9be-4c38-a7c8-37e8d8e0db11](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/a2e945a3-8c91-4aa0-a792-765bd80e3eb2)
 
 ### 2.Patient Mode
 * 2.1 Provide the necessary data for diagnosing your symptoms. 
-    * ![Screenshot 2024-05-07 184703](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/e9c248d5-490d-474b-b10e-1bd4d0c96d3d)
+    * ![328510109-e9c248d5-490d-474b-b10e-1bd4d0c96d3d](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/d44b8d48-5f58-4a5b-bd68-38bf12e30545)
 
 * 2.2 Click the <strong>"Ask CareMate"</strong> button to allow CareMate to generate the result. This process may take some time.
 
 * 2.3 After <strong>CareMate</strong> finishes generating the result, it will display the result
-    * ![Screenshot 2024-05-07 233145](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/44b6ce4c-5fc1-4c3d-84bc-8a08c94a9f4e)
+    * ![328603544-44b6ce4c-5fc1-4c3d-84bc-8a08c94a9f4e](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/210184b4-74a7-4f6e-bf8f-48f255a92dde)
 
 * Patient mode report output example
-    * ![Screenshot 2024-05-07 233237](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/7242f1cb-34c8-4e7a-bfbb-b8a6c5ddb010)
+    * ![328603560-7242f1cb-34c8-4e7a-bfbb-b8a6c5ddb010](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/31249762-ee97-4106-a7f0-f8924956d89b)
 
 ### 3.Doctor Mode
 * 3.1 Provide the necessary data for diagnosing your patient symptoms.
-    * ![Screenshot 2024-05-07 233905](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/671303a9-ca75-458d-9d4c-5faf3f7726e0)
+    * ![328605765-671303a9-ca75-458d-9d4c-5faf3f7726e0](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/43f6a0dd-8790-4742-a8e8-888f0ab52886)
 
 * 3.2 Click the <strong>"Ask CareMate"</strong> button to allow CareMate to generate the result. This process may take some time.
  
 * 3.3 After <strong>CareMate</strong> finishes generating the result, it will display the result
-   * ![Screenshot 2024-05-07 233747](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/e4e4378a-e950-4bff-836c-8739a56bd28c)
+   * ![328605754-e4e4378a-e950-4bff-836c-8739a56bd28c](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/ae4857bb-258a-41f6-932b-fe5cd13b40ca)
 
 * Doctor mode report output example
-    * ![Screenshot 2024-05-07 233934](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/a8597d8d-a191-4f27-ab14-913f34008d6f)
+    * ![328605782-a8597d8d-a191-4f27-ab14-913f34008d6f](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/6374be55-d774-419b-825b-c5a845e6506a)
 
 ---
