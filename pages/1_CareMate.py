@@ -156,10 +156,10 @@ class Chatapp:
                     progression += 100//len(nodes)
                     my_bar.progress(progression, text=progress_text)
 
+
                 suggested_medical_codes = [i.response for i in suggested_medical_codes]
                 unsorted_suggested_medical_codes = '\n'.join(suggested_medical_codes)
                 unsorted_suggested_medical_codes_response = gpt35.complete(caremate.getquerystr.cleancode(unsorted_suggested_medical_codes).format(unsorted_suggested_medical_codes = unsorted_suggested_medical_codes)).text
-
                 Suggested_ICD_11_Codes_Text,Suggested_CPT_Codes_Text,Suggested_HCPCS_Codes_Text = caremate.medicalcoding.splitcodes(unsorted_suggested_medical_codes_response)
                 my_bar.progress(100, text='Completed')
                 time.sleep(1)
