@@ -8,7 +8,7 @@ from llama_index.vector_stores.mongodb import MongoDBAtlasVectorSearch
 from llama_index.core import VectorStoreIndex
 from llama_index.llms.openai import OpenAI
 from llama_index.core.node_parser import SentenceSplitter
-from llama_index.llms.together import TogetherLLM
+from llama_index.llms.replicate import Replicate
 from llama_index.core import Document
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
@@ -76,8 +76,8 @@ class Chatapp:
                 switch_page('Home')
 
         Settings.embed_model = OpenAIEmbedding(model_name='text-embedding-3-small')
-        gpt3_5 = OpenAI(model="gpt-3.5-turbo-0125", temperature=0,api_key =  st.secrets["OPENAI_API_KEY"])
-        dbrx = TogetherLLM(model="databricks/dbrx-instruct", api_key=st.secrets['TOGETHER_API_KEY'])
+        os.environ["REPLICATE_API_TOKEN"] = st.secrets['REPLICATE_API_TOKEN']
+        snowflake = Replicate(model="snowflake/snowflake-arctic-instruct",temperature = 0,)
 
         client = pymongo.MongoClient(st.secrets["MongoUri"])
         clinet_cb = pymongo.MongoClient(st.secrets["client_cb"])
@@ -103,19 +103,19 @@ class Chatapp:
         ##Base query engine_cb
         base_query_engine_cb = index_cb.as_query_engine(
             similarity_top_k=5,
-            node_postprocessors=[caremate.Carellm.load_reranker(3,gpt3_5)],
-            llm = dbrx,
+            node_postprocessors=[caremate.Carellm.load_reranker(3,snowflake)],
+            llm = snowflake,
             temperature = 0
         )
 
         ##Base query engine
         base_query_engine = index.as_query_engine(
             similarity_top_k=12,
-            node_postprocessors=[caremate.Carellm.load_reranker(5,gpt3_5)],
-            llm = dbrx,
+            node_postprocessors=[caremate.Carellm.load_reranker(5,snowflake)],
+            llm = snowflake,
             temperature = 0
         )
-        modified_query_engine = caremate.Carellm.load_query_transform_engine(base_query_engine,dbrx)
+        modified_query_engine = caremate.Carellm.load_query_transform_engine(base_query_engine,snowflake)
 
 
         ###App
