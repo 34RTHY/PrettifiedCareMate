@@ -1,8 +1,7 @@
 # CareMate
 ### <p><strong>Transforming Healthcare Efficiency with CareMate🚀</strong><br>
 
-![adm](https://github.com/34RTHY/CareMateDatabricks/assets/54650326/39c56abe-97d6-46e7-ae39-267c126d5f97)
-
+![Comp 1](https://github.com/34RTHY/PrettifiedCareMate/assets/54650326/3b8c8cc1-73df-446b-971b-7dc992b1e533)
 
 [<img alt="alt_text" width="150px" src="https://streamlit.io/images/brand/streamlit-logo-secondary-lightmark-lighttext.png" />](https://caremate.streamlit.app/)
 [<img alt="alt_text" width="150px" src="https://d2dmyh35ffsxbl.cloudfront.net/assets/reimagine2/devpost-logo-25d0005ec83e3b9ef6fce93235bb6d642d7c828f31758ebdb5b7ee87de7d45c3.svg" />](https://arctic-streamlit-hackathon.devpost.com/?ref_content=featured&ref_feature=challenge&ref_medium=portfolio)
