@@ -32,7 +32,7 @@ Taking symptom analysis to new heights, CareMate's Differential Diagnosis featur
 * ### <p><strong>📧 Get in Touch</strong><br>
     * Got burning questions or game-changing feedback? We'd love to hear from you! Reach out via email or find us on GitHub. Your input fuels our journey towards a brighter, healthier future.
 
-# How to use it
+# How to use CareMate
 ### **1**.First of all :
 * You can proceed to the next page by clicking on either <strong>"Start Analyzing"</strong> or <strong>"Try CareMate"</strong>.
 
