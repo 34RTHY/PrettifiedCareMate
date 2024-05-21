@@ -110,12 +110,16 @@ components.html(
 
             function handleIntersectUniversal(entry) {
                 console.log(entry)
-                entry.target.classList.add('show');
+                if (entry.intersectionRatio > 0.9) {
+                    entry.target.classList.add('show');
+                }
             }
 
             function handleIntersectColumn(entry) {
                 console.log(entry + " Column")
-                entry.target.classList.add('displayScale');
+                if (entry.intersectionRatio > 0.9) {
+                    entry.target.classList.add('displayScale');
+                }
             }
             
             let observer = new IntersectionObserver(handleIntersect, options);

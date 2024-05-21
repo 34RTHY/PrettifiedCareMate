@@ -842,7 +842,7 @@ div.st-emotion-cache-obbtz.e1nzilvr5::marker{
 .hidden {
   opacity: 0;
   filter: blur(5px);
-  transform: translateX(-100px);
+  transform: translateX(-0.5em);
   transition: all 1s;
 }
 @media(prefer-reduced-motion) {
