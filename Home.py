@@ -47,15 +47,17 @@ class Home:
         title1, title2 = st.columns(2,gap = 'medium')
         with title1:
             st.markdown("""
-                            <li class='listText hidden '>Displays medical coding for each suggested disease.</li>
-                            <li class='listText hidden '>Reveals potential diseases using medical evidence</li>
-                            <li class='listText hidden '>Recommends personalized treatments for symptoms</li>
-                            <li class='listText hidden '>Provides actionable plans for patients and doctors</li>
+                            <li style='font-size: 16px' class='listText hidden '>Displays medical coding for each suggested disease.</li>
+                            <li style='font-size: 16px' class='listText hidden '>Reveals potential diseases using medical evidence</li>
+                            <li style='font-size: 16px' class='listText hidden '>Recommends personalized treatments for symptoms</li>
+                            <li style='font-size: 16px' class='listText hidden '>Provides actionable plans for patients and doctors</li>
                         """, unsafe_allow_html=True)
+
+            st.markdown("<div style='padding-top:3rem'></div>", unsafe_allow_html=True)
             if st.button('Start Analyzing ⇨', type="primary"):
                 switch_page('CareMate')
         with title2:
-            st.image("docmed.png")
+            st.image("src\\media\\docmed.png")
 
         st.markdown("<h1 class='hidden' style='text-align: center;'>Features</h1>", unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3,gap = 'medium')
