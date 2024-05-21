@@ -7,7 +7,8 @@ llama_index.vector_stores.mongodb
 llama_index
 llama_index.llms.openai
 llama_index.postprocessor.rankgpt_rerank
-llama_index.llms.together
+llama_index.llms.replicate
+replicate
 PyPDF2
 python-docx
 reportlab                                                      

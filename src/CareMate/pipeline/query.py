@@ -24,23 +24,23 @@ Here is the task: {text}
         query_str = f"""As a professional medical service, diagnose three possible diseases based on the provided data:{Patient_input}. Use bullet points to list diseases from most likely to least likely. Include reasons for each diagnosis.
 
 If unsure, avoid sharing false information. Outline treatment options for each identified disease and specify whether the patient should seek professional medical attention or opt for self-care at a pharmacy.
-
+in the **Disease 1** part you only have to specify the name of the disease and do not print out Disease 1,Disease 2,Disease 3 again for an example **Lymphedema** : reasons
+in the "Next steps for the patient to do" part you have to specify what the patient should do after diagnosed
 Response in MarkDown Format:
 ## Possible diseases based on the symptoms described:
-- **Name Of Disease 1** : Reason
-- **Name Of Disease 2** : Reason
-- **Name Of Disease 3** : Reason
+- **Disease 1** : Reason
+- **Disease 2** : Reason (if suspected)
+- **Disease 3** : Reason (if suspected)
 
 ## Treatments for each disease:
-- **Name Of Disease 1** : Treatment 1
-- **Name Of Disease 2** : Treatment 2
-- **Name Of Disease 3** : Treatment 3
-
+- **Disease 1** : Treatment 1
+- **Disease 2** : Treatment 2 (if suspected)
+- **Disease 3** : Treatment 3 (if suspected)
 
 ## Specify whether the patient should go to a doctor or pharmacy:
 - **Answer**: Reason
 
-## Next steps for the patient:
+## Next steps for the patient to do:
 - **Answer** : Reason
 """
         return query_str

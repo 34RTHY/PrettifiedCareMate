@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page 
 import streamlit.components.v1 as components
 import src.CareMate as caremate
+import base64
 path_to_css = './style/Landingpage.css'
 
 class Home:
@@ -57,7 +58,7 @@ class Home:
             if st.button('Start Analyzing ⇨', type="primary"):
                 switch_page('CareMate')
         with title2:
-            st.image("src\\media\\docmed.png")
+            st.image("./src/media/docmed.png")
 
         st.markdown("<h1 class='hidden' style='text-align: center;'>Features</h1>", unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3,gap = 'medium')

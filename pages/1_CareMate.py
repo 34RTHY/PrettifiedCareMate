@@ -8,7 +8,7 @@ from llama_index.vector_stores.mongodb import MongoDBAtlasVectorSearch
 from llama_index.core import VectorStoreIndex
 from llama_index.llms.openai import OpenAI
 from llama_index.core.node_parser import SentenceSplitter
-from llama_index.llms.together import TogetherLLM
+from llama_index.llms.replicate import Replicate
 from llama_index.core import Document
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core import Settings
@@ -76,8 +76,8 @@ class Chatapp:
                 switch_page('Home')
 
         Settings.embed_model = OpenAIEmbedding(model_name='text-embedding-3-small')
-        gpt3_5 = OpenAI(model="gpt-3.5-turbo-0125", temperature=0,api_key =  st.secrets["OPENAI_API_KEY"])
-        dbrx = TogetherLLM(model="databricks/dbrx-instruct", api_key=st.secrets['TOGETHER_API_KEY'])
+        os.environ["REPLICATE_API_TOKEN"] = st.secrets['REPLICATE_API_TOKEN']
+        snowflake = Replicate(model="snowflake/snowflake-arctic-instruct",temperature = 0,)
 
         client = pymongo.MongoClient(st.secrets["MongoUri"])
         clinet_cb = pymongo.MongoClient(st.secrets["client_cb"])
@@ -103,19 +103,19 @@ class Chatapp:
         ##Base query engine_cb
         base_query_engine_cb = index_cb.as_query_engine(
             similarity_top_k=5,
-            node_postprocessors=[caremate.Carellm.load_reranker(3,gpt3_5)],
-            llm = dbrx,
+            node_postprocessors=[caremate.Carellm.load_reranker(3,snowflake)],
+            llm = snowflake,
             temperature = 0
         )
 
         ##Base query engine
         base_query_engine = index.as_query_engine(
             similarity_top_k=12,
-            node_postprocessors=[caremate.Carellm.load_reranker(5,gpt3_5)],
-            llm = dbrx,
+            node_postprocessors=[caremate.Carellm.load_reranker(5,snowflake)],
+            llm = snowflake,
             temperature = 0
         )
-        modified_query_engine = caremate.Carellm.load_query_transform_engine(base_query_engine,dbrx)
+        modified_query_engine = caremate.Carellm.load_query_transform_engine(base_query_engine,snowflake)
 
 
         ###App
@@ -206,7 +206,6 @@ class Chatapp:
                 if st.button('Ask CareMate',type = 'primary'):
                     Askpatient = True
             
-#ASK PATIENT
             if Askpatient:
                 generated_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 Patient_input = f'My age:{AgeNumber}, My medical history:{Medical_History}, My symptoms:{Symptoms_injuries}, The timeline of this symptoms:{timeline} and Additional Context and Family History:{Additional_Context_and_Family_History}'
@@ -215,7 +214,9 @@ class Chatapp:
                 with st.spinner(text="In progress..."):
                     response = modified_query_engine.query(query_str)
                 full_response = response.response
-
+                # st.markdown('DEBUG##################################################################')
+                # st.markdown(full_response)
+                # st.markdown('DEBUG##################################################################')
                 Possible_diseases, Treatments_for_each_disease,doctor_or_pharmacy,Next_steps_for_the_patient = self.maketopatient(full_response)
 
                 timestamp = ''.join(c if c not in invalid_chars else '_' for c in generated_time)
@@ -230,7 +231,7 @@ class Chatapp:
 
                     
 
-
+#DOCTOR MODE
         if selected=='Doctor Mode':
             Askdoctor = False
             st.title('Ask :blue[CareMate] to analyze your symptoms or injuries')
