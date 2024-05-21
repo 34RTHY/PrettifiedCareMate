@@ -12,7 +12,7 @@ class initialize:
             )
     def load_nav_bar():
         pages = ["Home", "Try CareMate", "GitHub"]
-        urls = {"GitHub": "https://github.com/34RTHY/CareMateDatabricks"}
+        urls = {"GitHub": "https://github.com/34RTHY/PrettifiedCareMate"}
         styles = {
             "nav": {
                 "background-color": "royalblue",
