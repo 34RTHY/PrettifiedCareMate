@@ -26,7 +26,7 @@ Taking symptom analysis to new heights, CareMate's Differential Diagnosis featur
     * But we're not stopping here! Our journey continues with rigorous testing to ensure the safety and accuracy of our AI. Plus, stay tuned for the launch of our web app and ongoing innovation as we strive to push the boundaries of healthcare technology.
 
 * ### <p><strong>👥 Meet the Minds Behind CareMate</strong><br>
-    * Last but not least, meet the masterminds behind CareMate: two passionate students from Thailand, united by a shared love for machine learning and deep learning. Shoutout to Sakchote, my incredible teammate, for making CareMate a reality!
+    * Last but not least, meet the masterminds behind CareMate: three passionate students from Thailand, united by a shared love for machine learning and deep learning. This project wouldn't have been possible without the presence of each one of us: Kasidech Aewsrisakul, Norasetha Somboon, and Sakchote Khemmarach.
 
 * ### <p><strong>📧 Get in Touch</strong><br>
     * Got burning questions or game-changing feedback? We'd love to hear from you! Reach out via email or find us on GitHub. Your input fuels our journey towards a brighter, healthier future.
