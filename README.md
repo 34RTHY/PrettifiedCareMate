@@ -5,7 +5,7 @@
 
 [<img alt="alt_text" width="150px" src="https://streamlit.io/images/brand/streamlit-logo-secondary-lightmark-lighttext.png" />](https://caremate.streamlit.app/)
 [<img alt="alt_text" width="150px" src="https://d2dmyh35ffsxbl.cloudfront.net/assets/reimagine2/devpost-logo-25d0005ec83e3b9ef6fce93235bb6d642d7c828f31758ebdb5b7ee87de7d45c3.svg" />](https://arctic-streamlit-hackathon.devpost.com/?ref_content=featured&ref_feature=challenge&ref_medium=portfolio)
-[<img alt="alt_text" width="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/640px-Logo_of_YouTube_%282015-2017%29.svg.png" />](https://youtu.be/Cef_TNLpv0M?si=N8J-Q8rzDZ2SXysK)
+[<img alt="alt_text" width="80px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/640px-Logo_of_YouTube_%282015-2017%29.svg.png" />](https://youtu.be/vRU3zkEcIwY)
 [<img alt="alt_text" width="150px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Snowflake_Logo.svg/2560px-Snowflake_Logo.svg.png" />](https://www.snowflake.com/en/)
 ---
 * ### <p><strong>🎯 Our Mission</strong><br>
